@@ -10,11 +10,16 @@
           aria-label="Menu"
           @click="leftDrawerOpen = !leftDrawerOpen"
         />
-
-        <q-toolbar-title>
-          AbuzCoder
-        </q-toolbar-title>
       </q-toolbar>
+      <div class=" q-pl-lg q-pt-xl q-mb-md" >
+        <div class="text-h3 text-white ">
+          AbuzCoder
+        </div>
+        <div class="text-subtitle1">
+          {{ todayDate }}
+        </div>
+      </div>
+      <q-img src="https://i.redd.it/28xce59k82951.png" style="opacity: 0.8; z-index: -1;" class="absolute-top h-100 header-image" ></q-img>
     </q-header>
     <q-drawer
         v-model="leftDrawerOpen"
@@ -51,7 +56,7 @@
 
 <script>
 import EssentialLink from 'components/EssentialLink.vue'
-
+import { date } from 'quasar'
 const linksData = [
   {
     title: 'Simple Site',
@@ -73,6 +78,18 @@ export default {
       leftDrawerOpen: false,
       essentialLinks: linksData
     }
+  },
+  computed: {
+    todayDate () {
+      const timeStamp = Date.now()
+      return date.formatDate(timeStamp, 'dddd Do MMMM')
+    }
   }
 }
 </script>
+<style lang="scss">
+  .h-100{
+    height: 100%;
+  }
+
+</style>
